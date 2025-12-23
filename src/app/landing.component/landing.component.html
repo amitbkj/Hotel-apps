@@ -1,0 +1,45 @@
+<p>landing.component works!</p>
+<!-- MAIN SECTION -->
+<section class="main">
+  <div class="overlay">
+    <h1>Find Your Perfect Stay</h1>
+    <p>Book hotels worldwide at the best price</p>
+
+    <!-- SEARCH FORM -->
+    <form class="search-box" (ngSubmit)="searchHotels()">
+      <input
+        type="text"
+        placeholder="Location or Hotel Name"
+        [(ngModel)]="search.location"
+        name="location"
+      />
+
+      <input type="date" [(ngModel)]="search.checkIn" name="checkIn" />
+      <input type="date" [(ngModel)]="search.checkOut" name="checkOut" />
+      <input type="number" min="1" [(ngModel)]="search.guests" name="guests" />
+
+      <button type="submit">Search</button>
+      <button type="button" (click)="clearSearch()">Clear</button>
+    </form>
+  </div>
+</section>
+
+<!-- FEATURED HOTELS -->
+<section class="hotels">
+  <h2>Featured Hotels</h2>
+
+  <div class="cards">
+    <div class="card" *ngFor="let hotels of filteredHotels">
+      <img [src]="hotels.image" />
+      <h3>{{ hotels.name }}</h3>
+      <p>From ${{ hotels.price }} / night</p>
+      <p>{{ hotels.location }}</p>
+    </div>
+  </div>
+  <!-- NO HOTELS MESSAGE -->
+  <p class="no-hotels" *ngIf="filteredHotels.length === 0 && search.checkIn && search.checkOut">
+  ❌ No hotels available for the selected dates.
+  </p>
+</section>
+
+
