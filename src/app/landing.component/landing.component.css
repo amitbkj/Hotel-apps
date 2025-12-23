@@ -121,7 +121,9 @@
   .search-box input {
     width: 100%;
   }
-
+ .hotels {
+    padding:0px;
+  }
   .card {
     width: 100%;
     max-width: 320px;
